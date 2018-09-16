@@ -8,7 +8,7 @@
         <meta charset="utf-8" />
         <title>Emergency Plan Generator</title>
         <link rel="stylesheet" href="static/css/styles.css" />
-    <style>
+        <style>
     .button {
         background-color: #4CAF50;
         border: none;
@@ -66,7 +66,7 @@ p {
 }
 
 .list {
-    font-size: 28p;
+    font-size: 58p;
     margin: 14p;
     width: 75%
  }
@@ -74,13 +74,16 @@ p {
  li {
     font-size: 26pt;
     text-align: right;
+    text-color:'white';
   }
+
+
     </style>
     </head>
     <body class="body">
 		<h1 class="title">Disaster Plan Evacuation Route</h1>
         <form class="form-inline">
-            <button type="submit" class="btn btn-default">submit</button>
+            <button type="submit" class="button">submit</button>
         </form>
 
 
@@ -125,16 +128,77 @@ p {
     </div>
 
 
+    <script>
+        var locations = [
+     ["Aruuuuga", 35, -90],
+     <!--["Bruuuuuuga", 38.00, -70.00],-->
+     <!--["Calalatonya", 42.00, -63.52],-->
+     <!--["Derin", 46.73, -31.29],-->
+     <!--["Hering", 29.23, -78.91]-->
+    ];
+
+
+    </script>
+
+            <script>
+        console.log("External javascript")
+    $(document).ready(function() {
+    $('form').on('submit', function(event) {
+
+
+
+                           console.log("before ajax")
+                        $.ajax({
+                            type: 'GET',
+                            url: '/find' })
+                            .done(function(data)
+                            {console.log(data)
+
+
+
+                            temp4="fsgsw45ts5235"
+                            temp = 0
+                            ;
+
+                            for (var key in data) {
+                                temp2 = data[key][0] + " " + data[key][1] + " " + data[key][2]
+
+                             temp3 = "loc" + temp
+                             temp++
+                             document.getElementById(temp3).innerHTML=temp2;
+
+                             dummy = ["Dummy"];
+                             dummy.push(data[key][3]);
+                             dummy.push(data[key][4]);
+                             locations.push(dummy);
+
+
+                            }
+
+
+                            });
+                            event.preventDefault(); });
+                            });
+
+
+
+    </script>
+
+
+
 
    <script type="text/javascript">
 
-    var locations = [
-     ["Aruuuuga", 35, -90],
-     ["Bruuuuuuga", 38.00, -70.00],
-     ["Calalatonya", 42.00, -63.52],
-     ["Derin", 46.73, -31.29],
-     ["Hering", 29.23, -78.91]
-    ];
+
+
+    <!--var locations = [-->
+     <!--["Aruuuuga", 35, -90],-->
+     <!--["Bruuuuuuga", 38.00, -70.00],-->
+     <!--["Calalatonya", 42.00, -63.52],-->
+     <!--["Derin", 46.73, -31.29],-->
+     <!--["Hering", 29.23, -78.91]-->
+    <!--];-->
+    console.log("Meesa got triggerd")
 
     if(locations.length != 0) {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -163,57 +227,12 @@ p {
       })(marker, i));
     }
     }
+
+
+
   </script>
             </div>
-   <div class = "column">
-    <p>The safest coordinates for you are: </p>
 
-   </div>
-
- <script>
-        console.log("External javascript")
-$(document).ready(function() {
-    $('form').on('submit', function(event) {
-
-
-
-                           console.log("before ajax")
-                        $.ajax({
-                            type: 'GET',
-                            url: '/find' })
-                            .done(function(data)
-                            {console.log(data)
-
-
-                            for (var key in data){
-                                console.log( key, data[key] );
-                            }
-                            console.log("Hellohello")
-
-                            temp4="fsgsw45ts5235"
-                            temp = 0
-                            ;
-
-                            for (var key in data) {
-                                temp2 = data[key][0] + " " + data[key][1] + " " + data[key][2]
-
-                             temp3 = "loc" + temp
-                             console.log(temp3)
-                             console.log(typeof temp3)
-                             temp++
-                             document.getElementById(temp3).innerHTML=temp2;
-
-
-                            }
-
-
-                            });
-                            event.preventDefault(); });
-                            });
-
-
-
-    </script>
 
 
 
