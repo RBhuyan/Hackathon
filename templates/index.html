@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+ <html xmlns:align="http://www.w3.org/1999/xhtml">
+    <html>
+    <head>
+        <!--<script src="{{ url_for('static', filename='js/general.js') }}"></script>-->
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSZRiBYtYIv0xayPrB4-wj8WK_2osHjk8&callback=myMap"></script>
+        <meta charset="utf-8" />
+        <title>Emergency Plan Generator</title>
+        <link rel="stylesheet" href="static/css/styles.css" />
+    <style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 6px 6px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .center {
+        text-align:center;
+     }
+
+    .title {
+        font-size: 64px;
+        text-align:center;
+        color:white;
+        margin: 10px;
+     }
+
+     li {
+        font-size: 26px;
+        color:white;
+     }
+
+     .body {
+          background-image: url("https://wallpapertag.com/wallpaper/full/b/f/6/171993-gorgerous-black-background-tumblr-2398x1200-for-hd.jpg");
+          background-position:center;
+          background-repeat:no-repeat;
+          background-size:cover;
+      }
+
+      .column {
+    float: left;
+    width: 50%;
+    text-size: 30pt;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+p {
+    font-size: 30pt;
+    margin: 12pt;
+    width: 75%;
+}
+
+.list {
+    font-size: 28p;
+    margin: 14p;
+    width: 75%
+ }
+
+ li {
+    font-size: 26pt;
+    text-align: right;
+  }
+    </style>
+    </head>
+    <body class="body">
+		<h1 class="title">Disaster Plan Evacuation Route</h1>
+        <form class="form-inline">
+            <button type="submit" class="btn btn-default">submit</button>
+        </form>
+
+
+
+
+
+           <div class="dropdown">
+
+                <div id="myDropdown" class="center">
+                    <a href="#" class="button">Flood</a>
+                    <a href="#" class="button">Wildfire</a>
+                    <a href="#" class="button">Wilderness Crisis</a>
+                </div>
+            </div>
+
+
+        <div id="dropbox">
+			<span class="message">Drop image here to upload.</span>
+		</div>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Currently safe, may not have data or time to respond back to anyone" data-lang="en" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- The code to make the dynamic google maps interface-->
+
+        <div>
+        <h2 class="title">Find out where you need to go!</h2>
+    <div id="container">
+
+        <ul class = "list">
+            <div id="loc0" class = "list"><li>1</li></div>
+            <div id="loc1" class = "list"><li>2</li></div>
+            <div id="loc2" class = "list"><li>3</li></div>
+            <div id="loc3" class = "list"><li>4</li></div>
+            <div id="loc4" class = "list"><li>5</li></div>
+
+        </ul>
+
+
+
+
+        <div class="row">
+            <div class = "column">
+        <div id="map" class="map" style="height: 600px; width: 700px;"></div>
+    </div>
+
+
+
+   <script type="text/javascript">
+
+    var locations = [
+     ["Aruuuuga", 35, -90],
+     ["Bruuuuuuga", 38.00, -70.00],
+     ["Calalatonya", 42.00, -63.52],
+     ["Derin", 46.73, -31.29],
+     ["Hering", 29.23, -78.91]
+    ];
+
+    if(locations.length != 0) {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(locations[0][1], locations[0][2]),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+    var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map,
+        label: alphabet[i]
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+    }
+  </script>
+            </div>
+   <div class = "column">
+    <p>The safest coordinates for you are: </p>
+
+   </div>
+
+ <script>
+        console.log("External javascript")
+$(document).ready(function() {
+    $('form').on('submit', function(event) {
+
+
+
+                           console.log("before ajax")
+                        $.ajax({
+                            type: 'GET',
+                            url: '/find' })
+                            .done(function(data)
+                            {console.log(data)
+
+
+                            for (var key in data){
+                                console.log( key, data[key] );
+                            }
+                            console.log("Hellohello")
+
+                            temp4="fsgsw45ts5235"
+                            temp = 0
+                            ;
+
+                            for (var key in data) {
+                                temp2 = data[key][0] + " " + data[key][1] + " " + data[key][2]
+
+                             temp3 = "loc" + temp
+                             console.log(temp3)
+                             console.log(typeof temp3)
+                             temp++
+                             document.getElementById(temp3).innerHTML=temp2;
+
+
+                            }
+
+
+                            });
+                            event.preventDefault(); });
+                            });
+
+
+
+    </script>
+
+
+
+
+		<script type="text/javascript" src="static/js/jquery.filedrop.js"></script>
+        <script type="text/javascript" src="static/js/upload.js"></script>
+
+
+    </div>
+    </body>
+</html>
+
